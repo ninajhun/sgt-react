@@ -23,21 +23,25 @@ class App extends React.Component {
   }
 
   getAverageGrade() {
-    let gradesTotal = null;
-    const gradesCount = this.state.grades.length;
 
-    for (let i = 0; i < this.state.grades.length; i++) {
-      gradesTotal += this.state.grades[i].grade;
+    if (this.state.grades.length) {
+      let gradesTotal = null;
+      const gradesCount = this.state.grades.length;
+
+      for (let i = 0; i < this.state.grades.length; i++) {
+        gradesTotal += this.state.grades[i].grade;
+      }
+
+      const avgGrade = Math.round(gradesTotal / gradesCount);
+      return avgGrade;
     }
-
-    const avgGrade = Math.round(gradesTotal / gradesCount);
-
-    return avgGrade;
 
   }
 
   render() {
-    const header = <Header title='Student Grade Table' />;
+    const averageGrade = this.getAverageGrade();
+    const header = <Header title='Student Grade Table' averageGrade = {averageGrade} />;
+
     const gradeTable = <GradeTable grades = {this.state.grades} />;
 
     return (
