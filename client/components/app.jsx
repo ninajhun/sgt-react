@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import GradeTable from './grade-table';
+import GradeForm from './grade-form';
 
 class App extends React.Component {
   constructor(props) {
@@ -57,10 +58,22 @@ class App extends React.Component {
 
     const gradeTable = <GradeTable grades = {this.state.grades} />;
 
+    const gradeForm = <GradeForm />;
+
     return (
       <div>
         {header}
-        {gradeTable}
+        <div className="container">
+          <div className="row">
+            <div className="col-8">
+              {gradeTable}
+            </div>
+            <div className="col-4">
+              {gradeForm}
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }
