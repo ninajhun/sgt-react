@@ -17,18 +17,6 @@
       "name": "Douglas Crockford",
       "course": "JavaScript",
       "grade": 100
-    },
-    {
-      "course": "Web Dev",
-      "name": "ninajhun",
-      "grade": 99,
-      "id": 33
-    },
-    {
-      "course": "Web Dev",
-      "name": "ninajhun",
-      "grade": 56,
-      "id": 34
     }
   ]
 }

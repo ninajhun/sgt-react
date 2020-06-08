@@ -5,9 +5,9 @@ class GradeForm extends React.Component {
     super(props);
     this.state = {
       grade: {
-        course: null,
-        name: null,
-        grade: null
+        course: '',
+        name: '',
+        grade: ''
       }
     };
     this.handleNameChange = this.handleNameChange.bind(this);

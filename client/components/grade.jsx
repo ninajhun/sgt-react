@@ -1,13 +1,20 @@
 import React from 'react';
 
-function Grade(props) {
-  return (
-    <tr>
-      <td> {props.grade.name} </td>
-      <td> {props.grade.course} </td>
-      <td> {props.grade.grade} </td>
-    </tr>
-  );
+class Grade extends React.Component {
+
+  render() {
+    return (
+      <tr>
+        <td> {this.props.grade.name} </td>
+        <td> {this.props.grade.course} </td>
+        <td> {this.props.grade.grade} </td>
+        <td><button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => { this.props.deleteGrade(this.props.grade.id); }}>DELETE</button></td>
+      </tr>
+    );
+  }
 
 }
 

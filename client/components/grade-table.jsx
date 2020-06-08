@@ -10,7 +10,7 @@ class GradeTable extends React.Component {
   getGradeRows() {
     const gradeRows = [];
     for (let i = 0; i < this.props.grades.length; i++) {
-      gradeRows.push(<Grade key={ this.props.grades[i].id} grade= { this.props.grades[i] } />);
+      gradeRows.push(<Grade key={this.props.grades[i].id} grade={this.props.grades[i]} deleteGrade={this.props.deleteGrade} />);
     }
     return gradeRows;
   }
