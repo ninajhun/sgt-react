@@ -47,7 +47,11 @@ class App extends React.Component {
       body: JSON.stringify(newGrade)
     })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        this.setState({
+          grades: this.state.grades.concat(data)
+        });
+      })
       .catch(err => console.error(err));
 
   }
@@ -58,7 +62,7 @@ class App extends React.Component {
 
     const gradeTable = <GradeTable grades = {this.state.grades} />;
 
-    const gradeForm = <GradeForm />;
+    const gradeForm = <GradeForm addGrade = {this.addNewGrade} />; // addGrade = {this.addNewGrade}
 
     return (
       <div>

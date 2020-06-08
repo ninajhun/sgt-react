@@ -1,5 +1,4 @@
 import React from 'react';
-import Grade from './grade';
 
 class GradeForm extends React.Component {
   constructor(props) {
@@ -43,13 +42,15 @@ class GradeForm extends React.Component {
       grade: {
         course: this.state.grade.course,
         name: this.state.grade.name,
-        grade: event.target.value
+        grade: Number(event.target.value)
       }
     });
   }
 
-  handleSubmit(event) {
-
+  handleSubmit() {
+    const newGrade = this.state.grade;
+    this.props.addGrade(newGrade);
+    event.preventDefault();
   }
 
   handleReset() {
@@ -67,7 +68,7 @@ class GradeForm extends React.Component {
       <div>
         <h3>Add Grade</h3>
 
-        <form onReset={this.handleReset}>
+        <form onSubmit= {this.handleSubmit} onReset={this.handleReset} method= "post" >
           <div className="form-group">
 
             <div className="input-group mb-3">
