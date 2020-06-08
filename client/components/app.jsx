@@ -9,6 +9,7 @@ class App extends React.Component {
     this.state = { grades: [] };
     this.getAverageGrade = this.getAverageGrade.bind(this);
     this.addNewGrade = this.addNewGrade.bind(this);
+    this.deleteGrade = this.deleteGrade.bind(this);
   }
 
   componentDidMount() {
@@ -22,20 +23,6 @@ class App extends React.Component {
       .catch(err => {
         console.error('error:', err);
       });
-  }
-
-  getAverageGrade() {
-    if (this.state.grades.length) {
-      let gradesTotal = null;
-      const gradesCount = this.state.grades.length;
-
-      for (let i = 0; i < this.state.grades.length; i++) {
-        gradesTotal += this.state.grades[i].grade;
-      }
-
-      const avgGrade = Math.round(gradesTotal / gradesCount);
-      return avgGrade;
-    }
   }
 
   addNewGrade(newGrade) {
@@ -53,16 +40,41 @@ class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
 
+  deleteGrade(id) {
+    fetch(`api/grades/${id}`, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          grades: this.state.grades.filter(grade => grade.id !== id)
+        });
+      });
+  }
+
+  getAverageGrade() {
+    if (this.state.grades.length) {
+      let gradesTotal = null;
+      const gradesCount = this.state.grades.length;
+
+      for (let i = 0; i < this.state.grades.length; i++) {
+        gradesTotal += this.state.grades[i].grade;
+      }
+
+      const avgGrade = Math.round(gradesTotal / gradesCount);
+      return avgGrade;
+    }
   }
 
   render() {
     const averageGrade = this.getAverageGrade();
     const header = <Header title='Student Grade Table' averageGrade = {averageGrade} />;
 
-    const gradeTable = <GradeTable grades = {this.state.grades} />;
+    const gradeTable = <GradeTable grades = {this.state.grades} deleteGrade = {this.deleteGrade} />;
 
-    const gradeForm = <GradeForm addGrade = {this.addNewGrade} />; // addGrade = {this.addNewGrade}
+    const gradeForm = <GradeForm addGrade = {this.addNewGrade} />;
 
     return (
       <div>

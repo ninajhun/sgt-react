@@ -2,7 +2,7 @@ import React from 'react';
 
 function Header(props) {
   return (
-    <div className= "container">
+    <div className= "container mt-4">
       <div className="row align-items-center">
         <div className ="col-9">
           <h1>{props.title} </h1>
